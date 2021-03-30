@@ -1,0 +1,53 @@
+package Leetcode_Test.Test;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/3/30 - 03 - 30 - 17:54
+ * @Description: Leetcode_Test.Test
+ * @version: 1.0
+ */
+//练习Thread,实现多线程同步下载图片
+public class TestThread extends Thread {
+    private String url;     //网络图片地址
+    private String name;    //保存的文件名
+    public TestThread(String url,String name){
+        this.url = url;
+        this.name = name;
+    }
+
+//下载图片线程的执行体
+    @Override
+    public void run() {
+        WebDownloader webDownloader = new WebDownloader();
+        webDownloader.downloader(url,name);
+        System.out.println("下载了文件名为："+name);
+
+    }
+
+    //这是一个main方法，是程序的入口：
+    public static void main(String[] args) {
+        TestThread t1 = new TestThread("https://img-blog.csdnimg.cn/20190306205404250.png","2.jpg");
+        TestThread t2 = new TestThread("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdingyue.nosdn.127.net%2F3aPSHeo8JWn3G7zqZwPVUU1OCMKHwDH7X09g7kANZ83aV1534387243834.jpg&refer=http%3A%2F%2Fdingyue.nosdn.127.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619698104&t=965893686c94d22259e3e0cb176c8e5a","3.jpg");
+        t1.start();
+        t2.start();
+    }
+}
+//下载器:
+class WebDownloader {
+    //下载方法：
+    //这是一个main方法，是程序的入口：
+    public void downloader(String url, String name) {
+        try {
+            FileUtils.copyURLToFile(new URL(url), new File(name));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IO异常，downloader方法");
+        }
+    }
+}
