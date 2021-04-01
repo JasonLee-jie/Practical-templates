@@ -1,0 +1,24 @@
+package Main;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/1 - 04 - 01 - 18:56
+ * @Description: Main
+ * @version: 1.0
+ */
+public class Fbi {
+    //这是一个main方法，是程序的入口：
+    public static void main(String[] args) {
+        int i;
+        int[] a = new int[40];
+        a[0] = 0;
+        a[1] = 1;
+        System.out.println(a[0]);
+        System.out.println(a[1]);
+        for ( i = 2; i < 40; i++) {
+            a[i] = a[i-1] + a[i-2];
+            System.out.println(a[i]);
+        }
+
+    }
+}
