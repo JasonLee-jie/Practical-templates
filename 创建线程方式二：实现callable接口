@@ -1,0 +1,65 @@
+package Main;
+
+import Leetcode_Test.Test.TestThread;
+import org.apache.commons.io.FileUtils;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.*;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/5 - 04 - 05 - 19:56
+ * @Description: Main
+ * @version: 1.0
+ */
+public class TestCallable implements Callable<Boolean> {
+    private String url;     //网络图片地址
+    private String name;    //保存的文件名
+
+    public TestCallable(String url, String name) {
+        this.url = url;
+        this.name = name;
+    }
+
+    //下载图片线程的执行体
+    @Override
+    public Boolean call() {
+        WebDownloader webDownloader = new WebDownloader();
+        webDownloader.downloader(url, name);
+        System.out.println("下载了文件名为：" + name);
+        return true;
+    }
+
+    //这是一个main方法，是程序的入口：
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        TestCallable t1 = new TestCallable("https://img-blog.csdnimg.cn/20190306205404250.png", "2.jpg");
+        TestCallable t2 = new TestCallable("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdingyue.nosdn.127.net%2F3aPSHeo8JWn3G7zqZwPVUU1OCMKHwDH7X09g7kANZ83aV1534387243834.jpg&refer=http%3A%2F%2Fdingyue.nosdn.127.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619698104&t=965893686c94d22259e3e0cb176c8e5a", "3.jpg");
+        //创建执行服务：
+        ExecutorService ser = Executors.newFixedThreadPool(3);
+        //提交执行：
+        Future <Boolean> r1 = ser.submit(t1);
+        Future <Boolean> r2 = ser.submit(t2);
+        //获取结果：
+        boolean rs1 = r1.get();
+        boolean rs2 = r2.get();
+        //关闭服务：
+        ser.shutdownNow();
+    }
+
+}
+//下载器:
+class WebDownloader {
+    //下载方法：
+    //这是一个main方法，是程序的入口：
+    public void downloader(String url, String name) {
+        try {
+            FileUtils.copyURLToFile(new URL(url), new File(name));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IO异常，downloader方法");
+        }
+    }
+}
