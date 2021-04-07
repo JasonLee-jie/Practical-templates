@@ -1,13 +1,6 @@
 package Main;
 
 /**
- * @Auther: Jason Lee
- * @Date: 2021/4/7 - 04 - 07 - 14:45
- * @Description: Main
- * @version: 1.0
- */
-
-/**
  * 链表，相当于火车
  */
 public class LinkList {
@@ -30,10 +23,9 @@ public class LinkList {
     /**
      * 删除一个结点，在头结点后进行删除
      */
-    public Node deleteFirst() {
+    public void deleteFirst() {
         Node tmp = first;
         first = tmp.next;
-        return tmp;
     }
 
     /**
