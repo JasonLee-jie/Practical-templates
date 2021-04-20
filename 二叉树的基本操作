@@ -1,0 +1,31 @@
+package ch11;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/20 - 04 - 20 - 18:39
+ * @Description: ch11
+ * @version: 1.0
+ */
+/*
+ * 二叉树节点
+ */
+public class Node {
+    //数据项
+    public long data;
+    //数据项
+    public String sData;
+    //左子节点
+    public Node leftChild;
+    //右子节点
+    public Node rightChild;
+
+    /**
+     * 构造方法
+     * @param data
+     */
+    public Node(long data,String sData) {
+        this.data = data;
+        this.sData = sData;
+    }
+
+}
