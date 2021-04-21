@@ -1,0 +1,15 @@
+package ch18;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/21 - 04 - 21 - 21:03
+ * @Description: ch18
+ * @version: 1.0
+ */
+//顶点类
+public class Vertex {
+    private char label;
+    public Vertex(char label){
+        this.label = label;
+    }
+}
