@@ -1,0 +1,21 @@
+package ch18;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/21 - 04 - 21 - 21:05
+ * @Description: ch18
+ * @version: 1.0
+ */
+public class TestGraph {
+    //这是一个main方法，是程序的入口：
+    public static void main(String[] args) {
+        Graph g = new Graph();
+        g.addVertex('A');
+        g.addVertex('B');
+        g.addVertex('C');
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+    }
+}
