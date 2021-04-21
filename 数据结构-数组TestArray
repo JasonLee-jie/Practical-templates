@@ -1,0 +1,17 @@
+package ch01;
+
+/**
+ * @Auther: Jason Lee
+ * @Date: 2021/4/21 - 04 - 21 - 13:06
+ * @Description: ch01
+ * @version: 1.0
+ */
+public class TestArray {
+    public static void main(String[] args) {
+        long[] arr = new long[]{2,3,4};
+        arr[0] = 1;
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
+        System.out.println(arr[2]);
+    }
+}
